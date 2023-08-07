@@ -6,22 +6,22 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model user {
   id              Int         @id @default(autoincrement())
-  username        String
-  email           String
+  username        String      @unique
+  email           String      @unique
   password        String
   fullname        String?
   profilePicture  String?
   birthday        DateTime?   @db.Date
   description     String?
   roles           String
-  sessionid       String?
+  sessionId       String?
   contents        content[]
   todos           todo[]
 }
