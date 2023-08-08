@@ -71,13 +71,12 @@ export const actions = {
             await prisma.user.create({
                 data
             });
-
-            throw redirect(303, '/login');
         } catch (error) {
             return fail(500, {
                 registerError: true,
                 message: 'Internal server error'
             });
         }
+        throw redirect(303, '/login');
     }
 }
